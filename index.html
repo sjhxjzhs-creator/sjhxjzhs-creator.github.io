@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>xcAt的个人主页</title>
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    text-align: center;
+}
+
+.container {
+    padding: 40px 20px;
+}
+
+.avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 4px solid white;
+    transition: 0.3s;
+}
+
+.avatar:hover {
+    transform: scale(1.1);
+}
+
+h1 {
+    margin-top: 15px;
+}
+
+.card {
+    background: rgba(255,255,255,0.1);
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 15px;
+    max-width: 400px;
+    backdrop-filter: blur(10px);
+}
+
+.skill {
+    margin: 10px 0;
+    text-align: left;
+}
+
+.bar {
+    height: 8px;
+    background: rgba(255,255,255,0.3);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.bar div {
+    height: 100%;
+    background: #00ffcc;
+    width: 0;
+    transition: 1s;
+}
+
+button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    background: white;
+    color: #333;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #ddd;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- 头像 -->
+    <img class="avatar" src="https://picsum.photos/200" alt="头像">
+
+    <!-- 名字 -->
+    <h1>c**</h1>
+    <p>一个正在学习编程的cAt
+      🚀</p>
+
+    <!-- 技能 -->
+    <div class="card">
+        <h2>💻 技能</h2>
+
+        <div class="skill">
+            HTML
+            <div class="bar"><div style="width:80%"></div></div>
+        </div>
+
+        <div class="skill">
+            CSS
+            <div class="bar"><div style="width:70%"></div></div>
+        </div>
+
+        <div class="skill">
+            JavaScript
+            <div class="bar"><div style="width:50%"></div></div>
+        </div>
+    </div>
+
+    <!-- 联系方式 -->
+    <div class="card">
+        <h2>📬 联系我</h2>
+        <p>Email: sjhxjzhs@gmail.com</p>
+        <p>QQ: 1650613782</p>
+        <p>GitHub: https://github.com/sjhxjzhs-creator</p>
+
+        <button onclick="showMsg()">点我一下</button>
+    </div>
+
+</div>
+
+<script>
+function showMsg() {
+    alert("欢迎来到c的网站 😄");
+}
+
+// 页面加载动画（技能条）
+window.onload = function() {
+    const bars = document.querySelectorAll('.bar div');
+    bars.forEach(bar => {
+        bar.style.width = bar.style.width;
+    });
+};
+</script>
+
+</body>
+</html>
