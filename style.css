@@ -1,0 +1,400 @@
+ 忘说了，我在termux里，用Githubpage，有firebase→apiKey:"AIzaSyAwrG6EaK3R_olkVELt5PQA_AUsdzKnIqE", databaseURL:"https://project-8070304670066937245-default-rtdb.firebaseio.com"
+5 Files Changed +736 -0
+index.html
+/workspace
++40
+-0
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>社交平台 - 分享你的想法</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <h1 class="logo">✨ 社交平台</h1>
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="搜索帖子...">
+        <button id="searchBtn">🔍</button>
+      </div>
+    </div>
+  </header>
+ 
+  <main class="container">
+    <section class="create-post">
+      <h2>发布新帖子</h2>
+      <div class="post-form">
+        <input type="text" id="authorInput" placeholder="你的昵称" required>
+        <textarea id="contentInput" placeholder="分享你的想法..." rows="4" required></textarea>
+        <button id="postBtn" class="btn-primary">发布</button>
+      </div>
+    </section>
+ 
+    <section class="posts-section">
+      <h2>最新帖子</h2>
+      <div id="postsList" class="posts-list">
+        <div class="loading">加载中...</div>
+      </div>
+    </section>
+  </main>
+ 
+  <script type="module" src="app.js"><\/script>
+</body>
+</html>
+post.html
+/workspace
++35
+-0
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>帖子详情</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="back-btn">← 返回首页</a>
+      <h1 class="logo">✨ 帖子详情</h1>
+    </div>
+  </header>
+ 
+  <main class="container">
+    <section class="post-detail" id="postDetail">
+      <div class="loading">加载中...</div>
+    </section>
+ 
+    <section class="comments-section">
+      <h2>评论</h2>
+      <div class="comment-form">
+        <input type="text" id="commentAuthorInput" placeholder="你的昵称" required>
+        <textarea id="commentContentInput" placeholder="写下你的评论..." rows="3" required></textarea>
+        <button id="commentBtn" class="btn-primary">发表评论</button>
+      </div>
+      <div id="commentsList" class="comments-list"></div>
+    </section>
+  </main>
+ 
+  <script type="module" src="post.js"><\/script>
+</body>
+</html>
+style.css
+/workspace
++311
+-0
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+ 
+:root {
+  --primary-color: #1e40af;
+  --secondary-color: #3b82f6;
+  --accent-color: #60a5fa;
+  --bg-color: #f1f5f9;
+  --card-bg: #ffffff;
+  --text-color: #1e293b;
+  --text-secondary: #64748b;
+  --border-color: #e2e8f0;
+}
+ 
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+ 
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+ 
+.header {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  padding: 20px 0;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+ 
+.header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+ 
+.logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+ 
+.back-btn {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 8px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+ 
+.back-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+ 
+.search-box {
+  display: flex;
+  gap: 8px;
+  flex: 1;
+  max-width: 300px;
+}
+ 
+.search-box input {
+  flex: 1;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+ 
+.search-box button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+ 
+.search-box button:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+ 
+.create-post {
+  background: var(--card-bg);
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin-bottom: 30px;
+}
+ 
+.create-post h2 {
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+  color: var(--primary-color);
+}
+ 
+.post-form,
+.comment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+ 
+.post-form input,
+.post-form textarea,
+.comment-form input,
+.comment-form textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid var(--border-color);
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+ 
+.post-form input:focus,
+.post-form textarea:focus,
+.comment-form input:focus,
+.comment-form textarea:focus {
+  outline: none;
+  border-color: var(--secondary-color);
+}
+ 
+.btn-primary {
+  padding: 12px 25px;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  align-self: flex-end;
+}
+ 
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+ 
+.posts-section h2,
+.comments-section h2 {
+  font-size: 1.4rem;
+  margin-bottom: 20px;
+  color: var(--primary-color);
+}
+ 
+.posts-list,
+.comments-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+ 
+.post-card,
+.comment-card,
+.post-detail-card {
+  background: var(--card-bg);
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+ 
+.post-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+ 
+.post-card a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+ 
+.post-header,
+.comment-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+ 
+.avatar {
+  width: 45px;
+  height: 45px;
+  background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+ 
+.author-info {
+  flex: 1;
+}
+ 
+.author-name {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+ 
+.post-time,
+.comment-time {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+ 
+.post-content,
+.comment-content {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  margin-bottom: 15px;
+  color: var(--text-color);
+}
+ 
+.post-footer {
+  display: flex;
+  gap: 20px;
+  padding-top: 15px;
+  border-top: 1px solid var(--border-color);
+}
+ 
+.like-btn,
+.comment-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 0.95rem;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+ 
+.like-btn:hover,
+.comment-btn:hover {
+  background: var(--bg-color);
+  color: var(--secondary-color);
+}
+ 
+.like-btn.liked {
+  color: #ef4444;
+}
+ 
+.comments-section {
+  margin-top: 30px;
+}
+ 
+.comment-form {
+  background: var(--card-bg);
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 25px;
+}
+ 
+.loading {
+  text-align: center;
+  padding: 40px;
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+}
+ 
+.no-posts {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+}
+ 
+@media (max-width: 600px) {
+  .header .container {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .search-box {
+    max-width: 100%;
+  }
+  
+  .logo {
+    font-size: 1.5rem;
+  }
+  
+  .create-post,
+  .post-card,
+  .comment-card,
+  .post-detail-card {
+    padding: 18px;
+  }
+}
