@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>社交平台 - 分享你的想法</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <h1 class="logo">✨ 社交平台</h1>
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="搜索帖子...">
+        <button id="searchBtn">🔍</button>
+      </div>
+    </div>
+  </header>
+ 
+  <main class="container">
+    <section class="create-post">
+      <h2>发布新帖子</h2>
+      <div class="post-form">
+        <input type="text" id="authorInput" placeholder="你的昵称" required>
+        <textarea id="contentInput" placeholder="分享你的想法..." rows="4" required></textarea>
+        <button id="postBtn" class="btn-primary">发布</button>
+      </div>
+    </section>
+ 
+    <section class="posts-section">
+      <h2>最新帖子</h2>
+      <div id="postsList" class="posts-list">
+        <div class="loading">加载中...</div>
+      </div>
+    </section>
+  </main>
+ 
+  <script type="module" src="app.js"><\/script>
+</body>
+</html>
