@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>帖子详情</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="back-btn">← 返回首页</a>
+      <h1 class="logo">✨ 帖子详情</h1>
+    </div>
+  </header>
+ 
+  <main class="container">
+    <section class="post-detail" id="postDetail">
+      <div class="loading">加载中...</div>
+    </section>
+ 
+    <section class="comments-section">
+      <h2>评论</h2>
+      <div class="comment-form">
+        <input type="text" id="commentAuthorInput" placeholder="你的昵称" required>
+        <textarea id="commentContentInput" placeholder="写下你的评论..." rows="3" required></textarea>
+        <button id="commentBtn" class="btn-primary">发表评论</button>
+      </div>
+      <div id="commentsList" class="comments-list"></div>
+    </section>
+  </main>
+ 
+  <script type="module" src="post.js"><\/script>
+</body>
+</html>
